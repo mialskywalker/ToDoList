@@ -14,7 +14,6 @@ import android.widget.RadioGroup;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.snackbar.Snackbar;
-import com.mialskywalker.todolist.model.Priority;
 import com.mialskywalker.todolist.model.SharedViewModel;
 import com.mialskywalker.todolist.model.Task;
 import com.mialskywalker.todolist.model.TaskViewModel;
@@ -22,7 +21,6 @@ import com.mialskywalker.todolist.util.Utils;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.Group;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import java.util.Calendar;
@@ -33,8 +31,6 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
 
     private EditText enterTodo;
     private ImageButton calendarButton;
-    private ImageButton priorityButton;
-    private RadioGroup priorityRadioGroup;
     private RadioButton selectedRadioButton;
     private int selectedButtonId;
     private ImageButton saveButton;
@@ -60,8 +56,6 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
         calendarButton = view.findViewById(R.id.today_calendar_button);
         enterTodo = view.findViewById(R.id.enter_todo_et);
         saveButton = view.findViewById(R.id.save_todo_button);
-        priorityButton = view.findViewById(R.id.priority_todo_button);
-        priorityRadioGroup = view.findViewById(R.id.radioGroup_priority);
 
         Chip todayChip = view.findViewById(R.id.today_chip);
         todayChip.setOnClickListener(this);
@@ -105,14 +99,13 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
         saveButton.setOnClickListener(view1 -> {
             String task = enterTodo.getText().toString().trim();
             if (!TextUtils.isEmpty(task) && dueDate != null) {
-                Task myTask = new Task(task, Priority.HIGH, dueDate,
+                Task myTask = new Task(task, dueDate,
                         Calendar.getInstance().getTime(), false);
 
                 if (isEdit) {
                     Task updateTask = sharedViewModel.getSelectedItem().getValue();
                     updateTask.setTask(task);
                     updateTask.setDateCreated(Calendar.getInstance().getTime());
-                    updateTask.setPriority(Priority.HIGH);
                     updateTask.setDueDate(dueDate);
                     TaskViewModel.update(updateTask);
                     sharedViewModel.setIsEdit(false);

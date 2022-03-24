@@ -4,30 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.mialskywalker.todolist.adapter.OnToDoClickListener;
 import com.mialskywalker.todolist.adapter.RecyclerViewAdapter;
-import com.mialskywalker.todolist.model.Priority;
 import com.mialskywalker.todolist.model.SharedViewModel;
 import com.mialskywalker.todolist.model.Task;
 import com.mialskywalker.todolist.model.TaskViewModel;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import java.util.Calendar;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnToDoClickListener {
 
