@@ -72,7 +72,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             Task currTask = taskList.get(getAdapterPosition());
             int id = view.getId();
             if (id == R.id.todo_row_layout) {
-                onToDoClickListener.onToDoClick(getAdapterPosition(), currTask);
+                onToDoClickListener.onToDoClick(currTask);
             }else if (id == R.id.todo_radio_button) {
                 currTask = taskList.get(getAdapterPosition());
                 onToDoClickListener.onToDoRadioButtonClick(currTask);

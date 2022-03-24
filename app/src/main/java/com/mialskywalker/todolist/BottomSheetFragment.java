@@ -14,12 +14,14 @@ import android.widget.RadioGroup;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.chip.Chip;
 import com.mialskywalker.todolist.model.Priority;
+import com.mialskywalker.todolist.model.SharedViewModel;
 import com.mialskywalker.todolist.model.Task;
 import com.mialskywalker.todolist.model.TaskViewModel;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -38,6 +40,7 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
     private Group calendarGroup;
     private Date dueDate;
     Calendar calendar = Calendar.getInstance();
+    private SharedViewModel sharedViewModel;
 
     public BottomSheetFragment() {
 
@@ -69,6 +72,11 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        sharedViewModel = new ViewModelProvider(requireActivity())
+                .get(SharedViewModel.class);
+        if (sharedViewModel.getSelectedItem().getValue() != null) {
+            Task task = sharedViewModel.getSelectedItem().getValue();
+        }
 
         calendarButton.setOnClickListener(view12 -> {
             calendarGroup.setVisibility(

@@ -8,6 +8,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.mialskywalker.todolist.adapter.OnToDoClickListener;
 import com.mialskywalker.todolist.adapter.RecyclerViewAdapter;
 import com.mialskywalker.todolist.model.Priority;
+import com.mialskywalker.todolist.model.SharedViewModel;
 import com.mialskywalker.todolist.model.Task;
 import com.mialskywalker.todolist.model.TaskViewModel;
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements OnToDoClickListen
     private RecyclerView recyclerView;
     private RecyclerViewAdapter recyclerViewAdapter;
     BottomSheetFragment bottomSheetFragment;
+    private SharedViewModel sharedViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,9 @@ public class MainActivity extends AppCompatActivity implements OnToDoClickListen
         taskViewModel = new ViewModelProvider.AndroidViewModelFactory(MainActivity
                 .this.getApplication())
                 .create(TaskViewModel.class);
+
+        sharedViewModel = new ViewModelProvider(this)
+                .get(SharedViewModel.class);
 
         taskViewModel.getAllTasks().observe(this, tasks -> {
             recyclerViewAdapter = new RecyclerViewAdapter(tasks, this);
@@ -88,8 +93,9 @@ public class MainActivity extends AppCompatActivity implements OnToDoClickListen
     }
 
     @Override
-    public void onToDoClick(int adapterPosition, Task task) {
-
+    public void onToDoClick(Task task) {
+        sharedViewModel.selectItem(task);
+        showBottomSheetDialog();
     }
 
     @Override
