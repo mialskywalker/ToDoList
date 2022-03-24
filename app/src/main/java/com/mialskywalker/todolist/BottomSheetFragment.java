@@ -9,10 +9,8 @@ import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.google.android.material.chip.Chip;
 import com.google.android.material.snackbar.Snackbar;
 import com.mialskywalker.todolist.model.SharedViewModel;
 import com.mialskywalker.todolist.model.Task;
@@ -25,14 +23,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import java.util.Calendar;
 import java.util.Date;
-//import androidx.navigation.fragment.NavHostFragment;
 
 public class BottomSheetFragment extends BottomSheetDialogFragment implements View.OnClickListener {
 
     private EditText enterTodo;
     private ImageButton calendarButton;
-    private RadioButton selectedRadioButton;
-    private int selectedButtonId;
     private ImageButton saveButton;
     private CalendarView calendarView;
     private Group calendarGroup;
@@ -56,13 +51,6 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
         calendarButton = view.findViewById(R.id.today_calendar_button);
         enterTodo = view.findViewById(R.id.enter_todo_et);
         saveButton = view.findViewById(R.id.save_todo_button);
-
-        Chip todayChip = view.findViewById(R.id.today_chip);
-        todayChip.setOnClickListener(this);
-        Chip tomorrowChip = view.findViewById(R.id.tomorrow_chip);
-        tomorrowChip.setOnClickListener(this);
-        Chip nextWeekChip = view.findViewById(R.id.next_week_chip);
-        nextWeekChip.setOnClickListener(this);
 
         return view;
     }
@@ -125,15 +113,5 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        if (id == R.id.today_chip) {
-            calendar.add(Calendar.DAY_OF_YEAR, 0);
-            dueDate = calendar.getTime();
-        } else if (id == R.id.tomorrow_chip) {
-            calendar.add(Calendar.DAY_OF_YEAR, 1);
-            dueDate = calendar.getTime();
-        } else if (id == R.id.next_week_chip) {
-            calendar.add(Calendar.DAY_OF_YEAR, 7);
-            dueDate = calendar.getTime();
-        }
     }
 }

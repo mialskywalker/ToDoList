@@ -12,11 +12,14 @@ import com.mialskywalker.todolist.model.TaskViewModel;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -62,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements OnToDoClickListen
         fab.setOnClickListener(view -> {
             showBottomSheetDialog();
         });
+
     }
 
     private void showBottomSheetDialog() {
@@ -78,9 +82,10 @@ public class MainActivity extends AppCompatActivity implements OnToDoClickListen
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            return true;
+            Intent i = new Intent(MainActivity.this, DoneActivity.class);
+            startActivity(i);
         }
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
     @Override

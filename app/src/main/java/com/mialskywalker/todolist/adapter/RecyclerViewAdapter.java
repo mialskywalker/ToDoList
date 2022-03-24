@@ -40,7 +40,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         String formatted = Utils.formatDate(task.getDueDate());
 
         holder.task.setText(task.getTask());
-        holder.todayChip.setText(formatted);
     }
 
     @Override
@@ -51,7 +50,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public AppCompatRadioButton radioButton;
         public AppCompatTextView task;
-        public Chip todayChip;
 
         OnToDoClickListener onToDoClickListener;
 
@@ -59,7 +57,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(itemView);
             radioButton = itemView.findViewById(R.id.todo_radio_button);
             task = itemView.findViewById(R.id.todo_row_todo);
-            todayChip = itemView.findViewById(R.id.todo_row_chip);
             this.onToDoClickListener = toDoClickListener;
 
             itemView.setOnClickListener(this);
