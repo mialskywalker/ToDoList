@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.chip.Chip;
 import com.mialskywalker.todolist.R;
 import com.mialskywalker.todolist.model.Task;
+import com.mialskywalker.todolist.util.Utils;
 
 import java.util.List;
 
@@ -34,8 +35,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Task task = taskList.get(position);
+        String formatted = Utils.formatDate(task.getDueDate());
 
         holder.task.setText(task.getTask());
+        holder.todayChip.setText(formatted);
     }
 
     @Override
@@ -52,7 +55,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(itemView);
             radioButton = itemView.findViewById(R.id.todo_radio_button);
             task = itemView.findViewById(R.id.todo_row_todo);
-            todayChip = itemView.findViewById(R.id.today_chip);
+            todayChip = itemView.findViewById(R.id.todo_row_chip);
         }
     }
 
