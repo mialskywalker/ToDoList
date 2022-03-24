@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements OnToDoClickListen
     @Override
     public void onToDoClick(Task task) {
         sharedViewModel.selectItem(task);
+        sharedViewModel.setIsEdit(true);
         showBottomSheetDialog();
     }
 
