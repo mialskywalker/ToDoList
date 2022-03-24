@@ -19,9 +19,11 @@ import java.util.List;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private final List<Task> taskList;
+    private final OnToDoClickListener toDoClickListener;
 
-    public RecyclerViewAdapter(List<Task> taskList) {
+    public RecyclerViewAdapter(List<Task> taskList, OnToDoClickListener onToDoClickListener) {
         this.taskList = taskList;
+        this.toDoClickListener = onToDoClickListener;
     }
 
     @NonNull
@@ -46,16 +48,35 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return taskList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public AppCompatRadioButton radioButton;
         public AppCompatTextView task;
         public Chip todayChip;
+
+        OnToDoClickListener onToDoClickListener;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             radioButton = itemView.findViewById(R.id.todo_radio_button);
             task = itemView.findViewById(R.id.todo_row_todo);
             todayChip = itemView.findViewById(R.id.todo_row_chip);
+            this.onToDoClickListener = toDoClickListener;
+
+            itemView.setOnClickListener(this);
+            radioButton.setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View view) {
+            Task currTask = taskList.get(getAdapterPosition());
+            int id = view.getId();
+            if (id == R.id.todo_row_layout) {
+                onToDoClickListener.onToDoClick(getAdapterPosition(), currTask);
+            }else if (id == R.id.todo_radio_button) {
+                currTask = taskList.get(getAdapterPosition());
+                onToDoClickListener.onToDoRadioButtonClick(currTask);
+            }
         }
     }
 
