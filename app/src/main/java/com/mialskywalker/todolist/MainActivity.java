@@ -98,8 +98,12 @@ public class MainActivity extends AppCompatActivity implements OnToDoClickListen
     public boolean onToDoRadioButtonClick(Task task) {
         task.isDone = true;
         TaskViewModel.update(task);
-
         recyclerViewAdapter.notifyDataSetChanged();
         return false;
+    }
+
+    @Override
+    public void onToDoTrashButtonClick(Task task) {
+        TaskViewModel.delete(task);
     }
 }

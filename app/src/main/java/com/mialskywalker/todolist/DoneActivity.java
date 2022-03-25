@@ -69,4 +69,9 @@ public class DoneActivity extends AppCompatActivity implements OnToDoClickListen
     public boolean onToDoRadioButtonClick(Task task) {
         return false;
     }
+
+    @Override
+    public void onToDoTrashButtonClick(Task task) {
+        TaskViewModel.delete(task);
+    }
 }

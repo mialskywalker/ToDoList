@@ -52,6 +52,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public AppCompatRadioButton radioButton;
         public AppCompatTextView task;
         public Chip todayChip;
+        public Chip trashChip;
 
         OnToDoClickListener onToDoClickListener;
 
@@ -60,10 +61,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             radioButton = itemView.findViewById(R.id.todo_radio_button);
             task = itemView.findViewById(R.id.todo_row_todo);
             todayChip = itemView.findViewById(R.id.todo_row_chip);
+            trashChip = itemView.findViewById(R.id.trash_bin);
+
             this.onToDoClickListener = toDoClickListener;
 
             itemView.setOnClickListener(this);
             radioButton.setOnClickListener(this);
+            trashChip.setOnClickListener(this);
 
         }
 
@@ -76,6 +80,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             }else if (id == R.id.todo_radio_button) {
                 currTask = taskList.get(getAdapterPosition());
                 onToDoClickListener.onToDoRadioButtonClick(currTask);
+            }else if (id == R.id.trash_bin) {
+                currTask = taskList.get(getAdapterPosition());
+                onToDoClickListener.onToDoTrashButtonClick(currTask);
             }
         }
     }
