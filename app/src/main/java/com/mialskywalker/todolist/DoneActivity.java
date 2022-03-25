@@ -68,6 +68,9 @@ public class DoneActivity extends AppCompatActivity implements OnToDoClickListen
 
     @Override
     public boolean onToDoRadioButtonClick(Task task) {
+        task.isDone = false;
+        TaskViewModel.update(task);
+        recyclerViewAdapter.notifyDataSetChanged();
         return false;
     }
 
