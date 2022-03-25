@@ -12,14 +12,12 @@ import com.mialskywalker.todolist.model.TaskViewModel;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -97,11 +95,11 @@ public class MainActivity extends AppCompatActivity implements OnToDoClickListen
     }
 
     @Override
-    public void onToDoRadioButtonClick(Task task) {
-//        task.isDone = true;
-//        TaskViewModel.update(task);
-//        TaskViewModel.delete(task);
+    public boolean onToDoRadioButtonClick(Task task) {
+        task.isDone = true;
+        TaskViewModel.update(task);
 
         recyclerViewAdapter.notifyDataSetChanged();
+        return false;
     }
 }
