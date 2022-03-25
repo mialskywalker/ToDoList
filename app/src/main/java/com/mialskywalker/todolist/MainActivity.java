@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements OnToDoClickListen
     private RecyclerViewAdapter recyclerViewAdapter;
     BottomSheetFragment bottomSheetFragment;
     private SharedViewModel sharedViewModel;
+    private Task task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +98,10 @@ public class MainActivity extends AppCompatActivity implements OnToDoClickListen
 
     @Override
     public void onToDoRadioButtonClick(Task task) {
-        TaskViewModel.delete(task);
+//        task.isDone = true;
+//        TaskViewModel.update(task);
+//        TaskViewModel.delete(task);
+
         recyclerViewAdapter.notifyDataSetChanged();
     }
 }

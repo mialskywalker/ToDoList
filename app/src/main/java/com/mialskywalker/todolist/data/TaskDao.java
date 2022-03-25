@@ -20,11 +20,15 @@ public interface TaskDao {
     @Query("DELETE FROM task_table")
     void deleteAll();
 
-    @Query("SELECT * FROM task_table")
+    @Query("SELECT * FROM task_table WHERE task_table.is_done == 0")
     LiveData<List<Task>> getTasks();
 
     @Query("SELECT * FROM task_table WHERE task_table.task_id == :id")
     LiveData<Task> get(long id);
+
+    @Query("SELECT * FROM task_table WHERE task_table.is_done")
+    LiveData<List<Task>> getDoneTasks();
+
 
     @Update
     void update(Task task);

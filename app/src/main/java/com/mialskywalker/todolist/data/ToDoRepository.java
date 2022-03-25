@@ -13,15 +13,21 @@ public class ToDoRepository {
 
     private final TaskDao taskDao;
     private final LiveData<List<Task>> allTasks;
+    private final LiveData<List<Task>> doneTasks;
 
     public ToDoRepository(Application application) {
         TaskRoomDatabase database = TaskRoomDatabase.getDatabase(application);
         taskDao = database.taskDao();
         allTasks = taskDao.getTasks();
+        doneTasks = taskDao.getDoneTasks();
     }
 
     public LiveData<List<Task>> getAllTasks() {
         return allTasks;
+    }
+
+    public LiveData<List<Task>> getDoneTasks() {
+        return doneTasks;
     }
 
     public void insert(Task task) {
