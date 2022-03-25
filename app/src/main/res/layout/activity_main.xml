@@ -27,8 +27,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
+        app:backgroundTint="#66FFB3"
         app:srcCompat="@android:drawable/ic_input_add"
-        tools:ignore="ContentDescription"/>
+        tools:ignore="ContentDescription" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
